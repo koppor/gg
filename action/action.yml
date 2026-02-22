@@ -53,7 +53,7 @@ runs:
       env:
         GG_CACHE_DIR: ${{ steps.cache-dir.outputs.dir }}
       run: |
-        set -e
+        set -euxo pipefail
 
         VERSION="${{ inputs.version }}"
 
