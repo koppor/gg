@@ -1,4 +1,4 @@
-name: GG Action
+name: gg.cmd action
 
 on:
   push:
