@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Setup gg
-        uses: eirikb/gg/action@main
+        uses: koppor/gg/action@patch-1
 
       - name: Verify gg
         shell: bash
