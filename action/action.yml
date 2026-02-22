@@ -83,11 +83,11 @@ runs:
         echo "Cache directory: $GG_CACHE_DIR"
 
         GG_VERSION_RAW="$(sh "$HOME/.local/bin/gg.cmd" -V 2>/dev/null || true)"
-        GG_VERSION="$(printf '%s\n' "$GG_VERSION_RAW" | grep -Eo '[0-9]+(\.[0-9]+)+' | head -n1)"
-        
-        if [ -z "$GG_VERSION" ]; then
-          GG_VERSION="unknown"
-        fi
-        
+
+        # keep only the last non-empty line
+        GG_VERSION="$(printf '%s\n' "$GG_VERSION_RAW" | sed '/^$/d' | tail -n1)"
+
+        [ -n "$GG_VERSION" ] || GG_VERSION="unknown"
+
         echo "version=$GG_VERSION" >> "$GITHUB_OUTPUT"
         echo "Installed gg.cmd version: $GG_VERSION"
