@@ -1,0 +1,25 @@
+name: GG Action
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  run-gg:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup gg
+        uses: eirikb/gg/action@main
+
+      - name: Verify gg
+        shell: bash
+        run: gg.cmd --version
